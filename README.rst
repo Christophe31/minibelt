@@ -140,11 +140,11 @@ I wish '+'' was overloaded for dicts::
 
 Sometimes you do not want to simply overwrite the values inside the original dict, but merge them in custom fashion::
 
-    >>> def my_merge(v1, v2):
+    >>> def dict_tree_merge(v1, v2):
     ...     if isinstance(v1, dict) and isinstance(v2, dict):
-    ...         return dmerge(v1, v2)
+    ...         return dmerge(v1, v2, dict_tree_merge)
     ...     return v2
-    >>> dmerge({"a": 1, "b": {'ok': 5}}, {"b": {'ko': 5 }, "c": 3}, my_merge)
+    >>> dmerge({"a": 1, "b": {'ok': 5}}, {"b": {'ko': 5 }, "c": 3}, dict_tree_merge)
     {'a': 1, 'c': 3, 'b': {'ko': 5, 'ok': 5}}
 
 
